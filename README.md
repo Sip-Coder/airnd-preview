@@ -1,1 +1,1 @@
-Unlisted design preview of Ai.Edu PR #1 (new Ai.RnD homepage) — not the live site.
+Unlisted design preview of the Sip Guilds-based Ai.RnD rebuild (Sip-Coder/Ai.Edu @ 82b6fa0, branch cursor/simple-terminal-homepage-1249) — not the live site. noindex.
