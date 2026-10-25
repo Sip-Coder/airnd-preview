@@ -8,9 +8,14 @@
   ].filter(Boolean);
 
   function urlFor(path) {
-    const clean = String(path).replace(/^\//, "");
-    if (base === "/") return "/" + clean + ext;
-    return base + clean + ext;
+    let clean = String(path).replace(/^\//, "").replace(/\/$/, "");
+    if (ext === ".html") {
+      if (!clean) clean = "index.html";
+      else if (clean === "encyclopedia" || clean === "sections" || clean === "atlas") clean = clean + "/index.html";
+      else clean = clean + ".html";
+    }
+    if (base === "/") return "/" + clean;
+    return base + clean;
   }
 
   function indexFromPage() {

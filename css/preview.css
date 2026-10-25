@@ -130,8 +130,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .meta-count{font-size:.75rem;color:var(--muted)}
 
 /* Mobile nav */
-.mobile-tabs{display:none;position:fixed;bottom:0;left:0;right:0;z-index:50;background:#041219f2;border-top:1px solid var(--line);padding:.35rem .5rem calc(.35rem + env(safe-area-inset-bottom));justify-content:space-around}
-.mobile-tabs a{flex:1;text-align:center;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:.45rem .2rem;text-decoration:none}
+.mobile-tabs{display:none;position:fixed;bottom:0;left:0;right:0;z-index:50;background:#041219f2;border-top:1px solid var(--line);padding:.35rem .35rem calc(.35rem + env(safe-area-inset-bottom));justify-content:space-between;overflow-x:auto}
+.mobile-tabs a{flex:1 0 auto;text-align:center;font-size:.58rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding:.5rem .15rem;min-height:44px;display:flex;align-items:center;justify-content:center;text-decoration:none}
 .mobile-tabs a[aria-current="page"]{color:var(--gold)}
 
 footer.site{border-top:1px solid #c6a15b22;padding:1.25rem 1rem calc(6.5rem + env(safe-area-inset-bottom,0px));text-align:center;font-size:.75rem;color:var(--muted)}
