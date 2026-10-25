@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atlas · Ai.RnD</title>
+<meta name="description" content="Walk the Ai.RnD encyclopedia. History opens the map. Sections, modules, and nodes light up as the crawler moves.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/atlas.css">
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
+</head>
+<body data-catalog="../data/catalog.json" data-node-base="../encyclopedia/" data-section-base="../sections/" data-ext=".html" data-home="../index.html">
+<p id="atlas-state" hidden>loading</p>
+<p id="boot">Loading the atlas…</p>
+<div id="top"><span>FPS <b id="fps">--</b></span><span>PARTICLES <b id="pc">--</b></span><span class="hm">RES <b id="res">--</b></span><span class="hm">STOP <b id="stopn">--</b></span><a id="leave" href="../encyclopedia/index.html">Encyclopedia</a><a id="brand" class="serif" href="../index.html">Ai <span>RnD</span></a></div>
+<div id="step"><div id="kick">ENCYCLOPEDIA ATLAS</div><div id="num">01</div><div id="title" class="serif">History</div><div id="tagline" class="serif">I start here on purpose.</div><div id="acad" class="serif">Myths and made minds</div><div id="subt">NODES</div></div>
+<svg id="tethers" aria-hidden="true"></svg>
+<div id="tags"></div>
+<div id="hub" role="button" tabindex="0"><b>Myths and made minds</b><i></i></div>
+<div id="ctrl" role="toolbar" aria-label="Crawler controls">
+<button id="bRew" aria-label="Previous section" title="Previous section (Shift+Left)"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M11 6v12L3 12zM21 6v12l-8-6z"/></svg></button>
+<button id="bPrev" aria-label="Previous module" title="Previous module (Left)"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg></button>
+<button id="bPlay" aria-label="Pause" title="Pause or play (Space)"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button>
+<button id="bNext" aria-label="Next module" title="Next module (Right)"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg></button>
+<button id="bFF" aria-label="Next section" title="Next section (Shift+Right)"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M13 6v12l8-6zM3 6v12l8-6z"/></svg></button>
+<button id="bSpd" aria-label="Playback speed 1x" title="Speed (S)">1×</button>
+</div>
+<div id="dash">
+<div class="p"><h4>CRAWL LOG</h4><div id="log"></div></div>
+<div class="p"><h4>SECTIONS · MODULES</h4><div id="secs"></div></div>
+<div class="p"><h4>COVERAGE</h4><svg id="radar" viewBox="-60 -60 120 120" width="100%"></svg></div>
+<div class="p"><h4>SIGNAL</h4><svg id="beat" viewBox="0 0 200 110" preserveAspectRatio="none" width="100%"></svg></div>
+<div class="p"><h4>NODES EXPLORED</h4><div id="score"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="40" stroke="#ffffff18" stroke-width="6" fill="none"/><circle id="ring" cx="50" cy="50" r="40" stroke="#ff6b3d" stroke-width="6" fill="none" stroke-dasharray="251" stroke-dashoffset="251" transform="rotate(-90 50 50)" stroke-linecap="round"/></svg><div><div id="sval">0</div><div id="stot">/ 0</div></div></div></div>
+</div>
+<div id="defbg" hidden><div id="def" role="dialog" aria-modal="true" aria-labelledby="defT"><button class="x" id="defX" aria-label="Close">✕</button><h2 id="defT"></h2><div class="pth" id="defP"></div><div id="defB"></div><div class="row"><a id="defOpen" href="../encyclopedia/index.html">Open this node</a><button id="defClose" type="button">Close</button><button id="defRes" type="button">Resume</button></div></div></div>
+<script type="application/json" id="atlas-copy">[{"id":"history","title":"History","lede":"I start here on purpose. Before settings menus and chat windows, people were already arguing about made minds. Follow the arc. It is the front door.","modules":[{"id":"myths","title":"Myths and made minds","lede":"Clay, bronze, and stories about bodies that move because someone gave them a job."},{"id":"toward-turing","title":"Toward Turing","lede":"Clockwork, a coined word, a calculating engine, and the person who turned the old dream into a sharp question."},{"id":"technology","title":"The technology","lede":"A summer workshop, programs that dazzled and stalled, winters, learning from examples, and the chat window on your phone."}]},{"id":"what-ai-is","title":"What AI actually is","lede":"Plain words for the thing you have been nodding along to. No costume.","modules":[{"id":"plain","title":"The plain version","lede":"Prediction, a trained pile of examples, and why 'generative' just means it drafts."},{"id":"hype","title":"Hype, translated","lede":"The words vendors use, turned back into jobs a beginner can recognize."}]},{"id":"talking","title":"Talking to AI","lede":"How to brief the guess so the draft is about your work, not about its mood.","modules":[{"id":"first","title":"First conversations","lede":"The job, the context, and a request to show the steps."},{"id":"drafts","title":"A draft you can use","lede":"Iteration, verification, and the moment you decide."}]},{"id":"building","title":"Building","lede":"What you might make once the words make sense: a page, a helper, a small product.","modules":[{"id":"shapes","title":"What you might make","lede":"Three shapes that are enough for a beginner who wants to build, not browse."},{"id":"shipping","title":"From idea to a click","lede":"How a sketch becomes a thing someone else can use without you in the room."}]},{"id":"work","title":"Work and judgment","lede":"Using this at a real job, and the calls you do not delegate.","modules":[{"id":"everyday","title":"At your work","lede":"Writing, replies, and a check a human still owns."},{"id":"judgment","title":"Judgment","lede":"What you do not paste, why fluent is not true, and why your name still matters."}]}]</script>
+<script type="module" src="../js/atlas.js"></script>
+</body>
+</html>
