@@ -438,10 +438,27 @@ async function run() {
   function UI() {
     return MOB ? 1 : parseFloat(getComputedStyle(document.documentElement).fontSize) / 16 || 1;
   }
+  function shown(el) {
+    return Boolean(el && getComputedStyle(el).display !== "none");
+  }
+  function syncChrome() {
+    const chrome = document.querySelector(".site-chrome");
+    const tabs = document.querySelector(".mobile-tabs");
+    const top = chrome ? Math.max(0, Math.round(chrome.getBoundingClientRect().bottom)) : 0;
+    const bot = shown(tabs) ? Math.round(tabs.getBoundingClientRect().height) : 0;
+    document.body.style.setProperty("--site-top", `${top}px`);
+    document.body.style.setProperty("--site-bot", `${bot}px`);
+  }
   function region() {
-    const top = MOB ? 168 : Math.round(190 * UI());
-    const bot = MOB ? 210 : Math.round(250 * UI());
-    return { top, bot: innerHeight - bot };
+    syncChrome();
+    const bar = document.querySelector(".topbar");
+    const menu = document.querySelector("nav.nav");
+    const tabs = document.querySelector(".mobile-tabs");
+    const chromeTop = (bar ? bar.offsetHeight : 0) + (shown(menu) ? menu.offsetHeight : 0);
+    const tabsH = shown(tabs) ? tabs.offsetHeight : 0;
+    const top = (MOB ? 168 : Math.round(190 * UI())) + chromeTop;
+    const bot = (MOB ? 210 : Math.round(250 * UI())) + tabsH;
+    return { top, bot: Math.max(top + 48, innerHeight - bot) };
   }
   const PAD = 6;
   function rectOf(el) {
@@ -451,8 +468,15 @@ async function run() {
   function hit(a, b, pad) {
     return a.x < b.x + b.w + pad && b.x < a.x + a.w + pad && a.y < b.y + b.h + pad && b.y < a.y + a.h + pad;
   }
+  function chromeZones() {
+    const zones = [];
+    for (const el of [document.querySelector(".topbar"), document.querySelector("nav.nav"), document.querySelector(".mobile-tabs")]) {
+      if (shown(el)) zones.push(rectOf(el));
+    }
+    return zones;
+  }
   function reserved(cx, cy) {
-    const zones = [rectOf($("top")), rectOf($("ctrl")), rectOf($("dash"))];
+    const zones = [rectOf($("top")), rectOf($("ctrl")), rectOf($("dash")), ...chromeZones()];
     [...$("step").children].forEach((child) => {
       if (child.offsetParent && child.textContent.trim()) zones.push(rectOf(child));
     });
@@ -963,6 +987,7 @@ async function run() {
     if (hub.dataset.kind === "module") openModule(hub.dataset.section, hub.dataset.module, hub);
   });
   addEventListener("keydown", (event) => {
+    if (event.target.closest && event.target.closest("input, textarea, select")) return;
     if (defOpen) {
       if (event.key === "Escape") {
         closeDef(false);
@@ -1113,6 +1138,7 @@ async function run() {
     }
   }
   function resize() {
+    syncChrome();
     MOB = innerWidth < 760;
     cam.aspect = innerWidth / Math.max(1, innerHeight);
     cam.updateProjectionMatrix();
@@ -1137,6 +1163,7 @@ async function run() {
     }
   });
   resize();
+  document.fonts?.ready.then(() => syncChrome());
   setStep(0, "load");
   updCount();
   $("boot").hidden = true;
@@ -1161,6 +1188,7 @@ async function run() {
         ["top", rectOf($("top"))],
         ["ctrl", rectOf($("ctrl"))],
         ["dash", rectOf($("dash"))],
+        ...chromeZones().map((zone, index) => [`chrome:${index}`, zone]),
         ...[...$("step").children].filter((child) => child.offsetParent && child.textContent.trim()).map((child) => [`step:${child.id}`, rectOf(child)]),
         ["crawler", { x: cx - 12, y: cy - 12, w: 24, h: 24 }],
       ];

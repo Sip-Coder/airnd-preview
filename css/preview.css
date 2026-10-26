@@ -16,7 +16,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .serif{font-family:var(--serif)}
 .script{font-family:"Great Vibes",cursive}
 
-/* Top bar */
+/* Top bar. The wrapper does not generate a box, so the bar can stay sticky on scrolling pages. */
+.site-chrome{display:contents}
 .topbar{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:.75rem;padding:.55rem 1rem;background:#041219ee;border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
 .logo{font-family:var(--serif);font-size:1.05rem;letter-spacing:.08em;color:var(--cream);white-space:nowrap}
 .logo span{color:var(--gold)}.logo .script{font-size:1.15rem;margin-right:.15rem;color:var(--cream)}
@@ -151,10 +152,10 @@ footer.site a{color:var(--gold2)}
   .crumb-label{display:none}
 }
 @media(max-width:560px){
-  body{padding-bottom:calc(5.5rem + env(safe-area-inset-bottom,0px))}
+  body{padding-top:4rem;padding-bottom:calc(5.5rem + env(safe-area-inset-bottom,0px))}
   .nav{display:none}
   .mobile-tabs{display:flex}
-  .topbar{gap:.5rem;padding:.5rem .75rem}
+  .topbar{position:fixed;top:0;left:0;right:0;gap:.5rem;padding:.5rem .75rem}
   .wrap{width:min(100% - 1.25rem,var(--max));padding-bottom:calc(6.5rem + env(safe-area-inset-bottom,0px))}
   .hero{padding:1rem}
   .account{font-size:.65rem;padding:.3rem .5rem}

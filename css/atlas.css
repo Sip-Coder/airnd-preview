@@ -87,3 +87,44 @@ body.still .tag,body.still #hub{transition:none!important}
   #defbg{align-items:flex-end}
   #def{width:100vw;max-height:74vh;border-radius:14px 14px 0 0;border-bottom:none;padding-bottom:calc(14px + env(safe-area-inset-bottom))}
 }
+
+/* Same site chrome as the other pages. Fixed, because this page does not scroll.
+   --site-top and --site-bot are measured in atlas.js; these are the first-paint fallbacks. */
+.atlas-page{
+  --site-top:6.5rem;
+  --site-bot:0px;
+  padding-bottom:0;
+}
+.atlas-page .site-chrome{
+  display:flex;
+  flex-direction:column;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:16;
+}
+.atlas-page .topbar,
+.atlas-page .nav{position:relative;top:auto;left:auto;right:auto}
+.atlas-page .mobile-tabs{z-index:16}
+.atlas-page .topbar,
+.atlas-page .nav,
+.atlas-page .mobile-tabs{font-family:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+.atlas-page .search-results{z-index:30}
+.atlas-page #leave,
+.atlas-page #brand{display:none}
+.atlas-page #top{top:var(--site-top)}
+.atlas-page #step{top:calc(var(--site-top) + 2.15rem)}
+.atlas-page #dash{bottom:var(--site-bot)}
+.atlas-page #ctrl{bottom:calc(11.5rem + env(safe-area-inset-bottom,0px) + var(--site-bot))}
+.atlas-page #boot{z-index:12}
+@media(max-width:760px){
+  .atlas-page #step{top:calc(var(--site-top) + 2rem)}
+  .atlas-page #ctrl{bottom:calc(148px + env(safe-area-inset-bottom,0px) + var(--site-bot))}
+}
+@media(max-width:560px){
+  .atlas-page{--site-top:4rem;--site-bot:calc(3.45rem + env(safe-area-inset-bottom,0px));padding-top:0}
+  .atlas-page .nav{display:none}
+  .atlas-page #dash{height:132px;padding-bottom:0}
+  .atlas-page #ctrl{bottom:calc(148px + var(--site-bot))}
+}
